@@ -12,6 +12,8 @@ import (
 	"cosmossdk.io/depinject"
 	"cosmossdk.io/log"
 	storetypes "cosmossdk.io/store/types"
+	checkerskeeper "github.com/alice/checkers/keeper"
+	_ "github.com/alice/checkers/module"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -68,6 +70,7 @@ type MiniApp struct {
 	StakingKeeper         *stakingkeeper.Keeper
 	DistrKeeper           distrkeeper.Keeper
 	ConsensusParamsKeeper consensuskeeper.Keeper
+	CheckersKeeper        checkerskeeper.Keeper
 
 	// simulation manager
 	sm *module.SimulationManager
@@ -127,6 +130,7 @@ func NewMiniApp(
 		&app.StakingKeeper,
 		&app.DistrKeeper,
 		&app.ConsensusParamsKeeper,
+		&app.CheckersKeeper,
 	); err != nil {
 		return nil, err
 	}
